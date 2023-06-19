@@ -1,39 +1,51 @@
 import random
-from lingowords import*
-import sys
+from lingowords import words
 from termcolor import colored
 
 def get_random_woord(words):
     return random.choice(words)
 
 def get_1e_letter(geselecteed_woord):
-    eerste_letter = geselecteed_woord[0][0]
+    eerste_letter = geselecteed_woord[0]
     return eerste_letter
 
-print('Welkom bij lingo')
-print("Type een 5 letter woord en click enter!\n")
+while True:
+    print('Welkom bij Lingo!')
+    print("Type een 5-letterwoord en druk op Enter!\n")
 
-eerst_letter = get_1e_letter(words)
-print(eerst_letter)
-woord = get_random_woord(words)
-opnieuw_spelen = ""
+    woord = get_random_woord(words)
+    eerste_letter = get_1e_letter(woord)
+    print(eerste_letter)
 
-while opnieuw_spelen != "q":
+    opnieuw_spelen = ""
+
     for poging in range(1,6):
-        raad = input("").lower()
-
-        sys.stdout.write('\x1b[1A')
-        sys.stdout.write('\x1b[2K')
-
-        for i in range(min(len(raad),5)):
-            if raad[i] == woord[i]:
-                print(colored(raad[i], 'green'), end="")
-            elif raad[i] in woord:
-                print(colored(raad[i], 'yellow'), end="")
-            else:
-                print(raad[i], end="")
-
-            if raad == woord:
-                print(colored(f"Gefeliciteerd! Je hebt de woord in {i} geraden ",'red'))
+        while True:
+            raad = input(f"Poging {poging}: ").lower()
+            if len(raad) == 5:
                 break
-    opnieuw_spelen = input("Wil je opnieuw spelen? Typ (q) om af te sluiten.")
+            else:
+                print("Het woord moet precies 5 letters lang zijn!")
+
+        correcte_letters = ""
+
+        for i in range(5):
+            if raad[i] == woord[i]:
+                correcte_letters += colored(raad[i], 'green')
+            elif raad[i] in woord:
+                correcte_letters += colored(raad[i], 'yellow')
+            else:
+                correcte_letters += raad[i]
+
+        print(correcte_letters)
+
+        if raad == woord:
+            print(colored(f"Gefeliciteerd! Je hebt het woord geraden in poging {poging}!", 'red'))
+            break
+
+        if poging == 5:
+            print(colored(f"Helaas, je hebt het woord niet geraden. Het woord was '{woord}'.", 'red'))
+
+    opnieuw_spelen = input("Wil je opnieuw spelen? Typ 'q' om af te sluiten.\n")
+    if opnieuw_spelen.lower() == 'q':
+        break
