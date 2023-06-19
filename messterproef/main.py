@@ -3,7 +3,7 @@ from lingowords import words
 from termcolor import colored
 
 def get_random_woord(words):
-    return random.choice(words)
+    return 'tegel'
 
 def get_1e_letter(geselecteed_woord):
     eerste_letter = geselecteed_woord[0]
@@ -32,10 +32,12 @@ while True:
         for i in range(5):
             if raad[i] == woord[i]:
                 correcte_letters += colored(raad[i], 'green')
+            elif raad[i] in woord and raad[i] != woord[i]:
+                correcte_letters += '-'
             elif raad[i] in woord:
                 correcte_letters += colored(raad[i], 'yellow')
             else:
-                correcte_letters += raad[i]
+                 correcte_letters += raad[i]
 
         print(correcte_letters)
 
