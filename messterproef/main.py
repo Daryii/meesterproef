@@ -19,7 +19,7 @@ while True:
 
     opnieuw_spelen = ""
 
-    for poging in range(1,6):
+    for poging in range(50):
         while True:
             raad = input(f"Poging {poging}: ").lower()
             if len(raad) == 5:
