@@ -28,21 +28,24 @@ while True:
                 print("Het woord moet precies 5 letters lang zijn!")
 
         correcte_letters = ""
-
+        
         for i in range(5):
             if raad[i] == woord[i]:
+                
                 correcte_letters += colored(raad[i], 'green')
-            elif raad[i] in woord and raad[i] != woord[i]:
-                correcte_letters += '-'
-            elif raad[i] in woord:
-                correcte_letters += colored(raad[i], 'yellow')
             else:
-                 correcte_letters += raad[i]
+                correcte_letters += '-'
+        copy_woord = correcte_letters
+        for x in range(5):
+            if copy_woord in woord and copy_woord != woord[x]:
+                correcte_letters += colored(raad[x], 'yellow')
+                
+                
 
         print(correcte_letters)
 
         if raad == woord:
-            print(colored(f"Gefeliciteerd! Je hebt het woord geraden in poging {poging}!", 'red'))
+            print(colored(f"Gefeliciteerd! Je hebt het woord geraden in poging {poging} of druk op Enter!", 'red'))
             break
 
         if poging == 5:
