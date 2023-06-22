@@ -9,6 +9,7 @@ def get_1e_letter(geselecteed_woord):
     eerste_letter = geselecteed_woord[0]
     return eerste_letter
 
+
 while True:
     print('Welkom bij Lingo!')
     print("Type een 5-letterwoord en druk op Enter!\n")
@@ -19,6 +20,7 @@ while True:
 
     opnieuw_spelen = ""
 
+
     for poging in range(50):
         while True:
             raad = input(f"Poging {poging}: ").lower()
@@ -27,30 +29,33 @@ while True:
             else:
                 print("Het woord moet precies 5 letters lang zijn!")
 
-        correcte_letters = ""
-        
-        for i in range(5):
-            if raad[i] == woord[i]:
-                
-                correcte_letters += colored(raad[i], 'green')
-            else:
-                correcte_letters += '-'
-        copy_woord = correcte_letters
-        for x in range(5):
-            if copy_woord in woord and copy_woord != woord[x]:
-                correcte_letters += colored(raad[x], 'yellow')
-                
-                
+        correcte_woord =list(woord)
+        nieuw_woord = list(woord)
 
-        print(correcte_letters)
+        for i in range(5):
+            if raad[i] == nieuw_woord[i]:
+                correcte_woord[i] = colored(raad[i], 'green')
+                nieuw_woord[i] = ' '
+            else:
+                correcte_woord[i] = '-'
+                
+       
+        for x in range(5):
+                if raad[x] in nieuw_woord:
+                    correcte_woord[x] = colored(raad[x], 'yellow')   
+                    nieuw_woord[x] = ' '
+                else:
+                    correcte_woord[i] = '-'
+
+        print(''.join(correcte_woord))
 
         if raad == woord:
-            print(colored(f"Gefeliciteerd! Je hebt het woord geraden in poging {poging} of druk op Enter!", 'red'))
+            print(colored(f"Gefeliciteerd! Je hebt het woord geraden in poging {poging} !", 'red'))
             break
 
         if poging == 5:
             print(colored(f"Helaas, je hebt het woord niet geraden. Het woord was '{woord}'.", 'red'))
 
-    opnieuw_spelen = input("Wil je opnieuw spelen? Typ 'q' om af te sluiten.\n")
+    opnieuw_spelen = input("Wil je opnieuw spelen? Typ 'q' om af te sluiten of druk op Enter om opnieuw te spelen!.\n")
     if opnieuw_spelen.lower() == 'q':
         break
