@@ -36,7 +36,7 @@ while True:
             if raad[i] == nieuw_woord[i]:
                 correcte_woord[i] = colored(raad[i], 'green')
                 nieuw_woord[i] = ' '
-            elif raad[i] in nieuw_woord and raad[i] != nieuw_woord[i]:
+            elif raad[i] in nieuw_woord and raad[i] != nieuw_woord[i]:  
                 correcte_woord[i] = colored(raad[i], 'yellow')
                 nieuw_woord[i] = ' '
             else:
