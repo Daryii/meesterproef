@@ -21,7 +21,7 @@ while True:
     opnieuw_spelen = ""
 
 
-    for poging in range(50):
+    for poging in range(1,6):
         while True:
             raad = input(f"Poging {poging}: ").lower()
             if len(raad) == 5:
@@ -36,17 +36,15 @@ while True:
             if raad[i] == nieuw_woord[i]:
                 correcte_woord[i] = colored(raad[i], 'green')
                 nieuw_woord[i] = ' '
+            elif raad[i] in nieuw_woord and raad[i] != nieuw_woord[i]:
+                correcte_woord[i] = colored(raad[i], 'yellow')
+                nieuw_woord[i] = ' '
             else:
                 correcte_woord[i] = '-'
                 
-       
-        for x in range(5):
-                if raad[x] in nieuw_woord:
-                    correcte_woord[x] = colored(raad[x], 'yellow')   
-                    nieuw_woord[x] = ' '
-                else:
-                    correcte_woord[i] = '-'
+            
 
+        
         print(''.join(correcte_woord))
 
         if raad == woord:
