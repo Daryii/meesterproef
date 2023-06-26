@@ -29,25 +29,37 @@ while True:
             else:
                 print("Het woord moet precies 5 letters lang zijn!")
 
-        correcte_woord =list(woord)
+        correcte_woord = list(raad)
+    
         nieuw_woord = list(woord)
+        raad_woord = list(raad)
 
         for i in range(5):
-            if raad[i] == nieuw_woord[i]:
-                correcte_woord[i] = colored(raad[i], 'green')
+            if raad_woord[i] == nieuw_woord[i]:
+                correcte_woord[i] = colored(raad_woord[i], 'green')
                 nieuw_woord[i] = ' '
-            elif raad[i] in nieuw_woord and raad[i] != nieuw_woord[i]:  
-                correcte_woord[i] = colored(raad[i], 'yellow')
-                nieuw_woord[i] = ' '
+                raad_woord[i] = ' '
+
+        print(raad_woord)
+        print(correcte_woord)
+        print(nieuw_woord)
+        print(''.join(nieuw_woord))
+            
+
+        for i in range(5):
+            if raad_woord[i] in nieuw_woord:
+                p = nieuw_woord.index(raad_woord[i])
+                correcte_woord[i] = colored(raad_woord[i], 'yellow')
+                nieuw_woord[p] = ' '
             else:
                 correcte_woord[i] = '-'
                 
             
 
         
-        print(''.join(correcte_woord))
+        print(''.join(nieuw_woord))
 
-        if raad == woord:
+        if raad_woord == woord:
             print(colored(f"Gefeliciteerd! Je hebt het woord geraden in poging {poging} !", 'red'))
             break
 
