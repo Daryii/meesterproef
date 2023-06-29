@@ -3,7 +3,7 @@ from lingowords import words
 from termcolor import colored
 
 def get_random_woord(words):
-    return 'tegel'
+    return random.choice(words)
 
 def get_1e_letter(geselecteed_woord):
     eerste_letter = geselecteed_woord[0]
@@ -29,35 +29,25 @@ while True:
             else:
                 print("Het woord moet precies 5 letters lang zijn!")
 
-        correcte_woord = list(raad)
-    
+        correcte_woord = list('-' * 5)
         nieuw_woord = list(woord)
         raad_woord = list(raad)
 
         for i in range(5):
             if raad_woord[i] == nieuw_woord[i]:
                 correcte_woord[i] = colored(raad_woord[i], 'green')
+
                 nieuw_woord[i] = ' '
                 raad_woord[i] = ' '
 
-        print(raad_woord)
-        print(correcte_woord)
-        print(nieuw_woord)
-        print(''.join(nieuw_woord))
-            
-
         for i in range(5):
-            if raad_woord[i] in nieuw_woord:
+            if raad_woord[i] in nieuw_woord and raad_woord[i] != ' ':
                 p = nieuw_woord.index(raad_woord[i])
                 correcte_woord[i] = colored(raad_woord[i], 'yellow')
                 nieuw_woord[p] = ' '
-            else:
-                correcte_woord[i] = '-'
-                
-            
-
         
-        print(''.join(nieuw_woord))
+        
+        print(''.join(correcte_woord))
 
         if raad_woord == woord:
             print(colored(f"Gefeliciteerd! Je hebt het woord geraden in poging {poging} !", 'red'))
